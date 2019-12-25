@@ -1,0 +1,64 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <% include ../Partials/head.ejs %>
+</head>
+
+<body>
+<div class="wrapper">
+    <% include ../Partials/header.ejs %>
+
+    <div class="page-wrap">
+        <% include ../Partials/sidebar.ejs %>
+
+        <div class="main-content">
+            <div class="container-fluid">
+                <div class="card">
+                    <div class="card-header bg-aqua">
+                        <h4 class="text-white">Edit User Details- <%- user.FirstName + " " + user.LastName %></h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" action="/editUser">
+                            <div class="form-row">
+                                <div class="form-group col">
+                                    <label for="FirstName">First Name</label>
+                                    <input name="_id" id="_id" type="hidden" value="<%- user._id %>">
+                                    <input name="FirstName" id="FirstName" class="form-control" placeholder="First Name"
+                                           value="<%- user.FirstName %>">
+                                </div>
+                                <div class="form-group col">
+                                    <label for="LastName">Last Name</label>
+                                    <input name="LastName" id="LastName" class="form-control" placeholder="Last Name"
+                                           value="<%- user.LastName %>">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col">
+                                    <label for="ContactNumber">Contact Number</label>
+                                    <input name="ContactNumber" id="ContactNumber" class="form-control"
+                                           placeholder="Contact Number" value="<%- user.ContactNumber %>">
+                                </div>
+                                <div class="form-group col">
+                                    <label for="EmailID">EmailID</label>
+                                    <input name="EmailID" id="EmailID" class="form-control" placeholder="Email ID"
+                                           value="<%- user.EmailID %>">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <button type="submit" class="btn btn-primary btn-block mx-auto">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <% include ../Partials/footer.ejs %>
+
+    </div>
+</div>
+<% include ../Partials/bodyScriptLoader.ejs %>
+</body>
+</html>

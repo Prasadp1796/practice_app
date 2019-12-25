@@ -1,0 +1,59 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <% include ../Partials/head.ejs %>
+</head>
+
+<body>
+<div class="wrapper">
+    <% include ../Partials/header.ejs %>
+
+    <div class="page-wrap">
+        <% include ../Partials/sidebar.ejs %>
+
+        <div class="main-content">
+            <div class="container-fluid">
+                <div class="card">
+                    <div class="card-header bg-aqua">
+                        <h4 class="text-white">Create New User</h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" action="/createUser">
+                            <div class="form-row">
+                                <div class="form-group col">
+                                    <label for="FirstName">First Name</label>
+                                    <input name="FirstName" id="FirstName" class="form-control" placeholder="First Name">
+                                </div>
+                                <div class="form-group col">
+                                    <label for="LastName">Last Name</label>
+                                    <input name="LastName" id="LastName" class="form-control" placeholder="Last Name">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col">
+                                    <label for="ContactNumber">Contact Number</label>
+                                    <input name="ContactNumber" id="ContactNumber" class="form-control" placeholder="Contact Number">
+                                </div>
+                                <div class="form-group col">
+                                    <label for="EmailID">EmailID</label>
+                                    <input name="EmailID" id="EmailID" class="form-control" placeholder="Email ID">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <button type="submit" class="btn btn-primary btn-block mx-auto">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <% include ../Partials/footer.ejs %>
+
+    </div>
+</div>
+<% include ../Partials/bodyScriptLoader.ejs %>
+</body>
+</html>

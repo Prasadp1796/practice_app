@@ -1,0 +1,70 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <title><%- title %></title>
+    <% include ../Partials/head.ejs %>
+</head>
+
+<body>
+<div class="wrapper">
+    <% include ../Partials/header.ejs %>
+
+    <div class="page-wrap">
+        <% include ../Partials/sidebar.ejs %>
+
+        <div class="main-content">
+            <div class="container-fluid">
+                <div class="card">
+                    <div class="card-header bg-aqua">
+                        <h4 class="text-white">Manage Users</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row m-2 float-right">
+                            <a class="btn btn-outline-primary" href="/createUser"><i class="ik ik-plus"></i> Add User</a>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-stripped text-center">
+                                <thead>
+                                <tr>
+                                    <th>Sr. No.</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Email Id</th>
+                                    <th>Contact</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                                <% var count = 1; for(var user of users){ %>
+                                <tr>
+                                    <td><%- count++ %></td>
+                                    <td><%- user.FirstName %></td>
+                                    <td><%- user.LastName %></td>
+                                    <td><%- user.ContactNumber %></td>
+                                    <td><%- user.EmailID %></td>
+                                    <td>
+                                        <a href="/editUser?_id=<%- user._id %>"
+                                           class="btn btn-warning btn-lg text-white"><i class="ik ik-edit"></i></a>
+                                    </td>
+                                    <td>
+                                        <a href="/deleteUser?_id=<%- user._id %>"
+                                           class="btn btn-danger btn-lg text-white"><i class="ik ik-trash"></i></a>
+                                    </td>
+                                </tr>
+                                <% } %>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <% include ../Partials/footer.ejs %>
+
+    </div>
+</div>
+<% include ../Partials/bodyScriptLoader.ejs %>
+</body>
+</html>
