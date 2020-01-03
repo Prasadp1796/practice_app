@@ -1,0 +1,98 @@
+<script type="text/ng-template" id="modal.html">
+    <div id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel">
+        <div class="modal-header" ng-class="{'bg-info': employee.mode === 'add', 'bg-warning': employee.mode === 'edit'}">
+            <h4 id="exampleModalLabel"  class="modal-title text-white">{{employee.mode === 'add' ? "Add Employee" : "Edit Employee" }}</h4>
+            <button type="button" employee-dismiss="modal" aria-label="Close" class="close text-light"
+                    ng-click="close()"><span
+                        aria-hidden="true">×</span></button>
+        </div>
+        <div class="modal-body" ng-cloak>
+
+            <div class="px-3">
+                <form name="employeeForm">
+                    <div class="col-12">
+                        <div class="alert alert-danger alert-dismissible" role="alert"
+                             ng-repeat="message in errorMessages">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            {{message}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-6">
+                            <label>First Name</label>
+                            <input class="form-control" type="text" name="FirstName"
+                                   ng-model="employee.FirstName" ng-pattern="/^[A-Za-z]+$/"
+                                   placeholder="First Name" ng-minlength="3" required>
+                            <div ng-messages="employeeForm.FirstName.$error" style="color:red"
+                                 ng-if="employeeForm.FirstName.$touched"
+                                 role="alert">
+                                <div ng-message="required">Please Enter First Name</div>
+                                <div ng-message="minlength">employee Name is too short</div>
+                                <div ng-message="pattern">Invalid name</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-6">
+                            <label>Last Name</label>
+                            <input class="form-control" type="text" name="LastName"
+                                   ng-model="employee.LastName"
+                                   placeholder="Last Name" ng-minlength="3" required>
+                            <div ng-messages="employeeForm.LastName.$error" style="color:red"
+                                 ng-if="employeeForm.LastName.$touched"
+                                 role="alert">
+                                <div ng-message="required">Please Enter Last Name</div>
+                                <div ng-message="minlength">employee Name is too short</div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-6">
+                            <label>Contact</label>
+                            <input class="form-control" type="text" name="Contact" ng-model="employee.ContactNumber"
+                                   placeholder="Contact" ng-minlength="3" ng-pattern="/^[6-9][0-9]{9}$/" required>
+
+                            <div ng-messages="employeeForm.Contact.$error" style="color:red"
+                                 ng-if="employeeForm.Contact.$touched"
+                                 role="alert">
+                                <div ng-message="required">Please Contact</div>
+                                <div ng-message="pattern">Please Enter Valid Contact Number</div>
+                            </div>
+                        </div>
+                        <div class="form-group col-6">
+                            <label>Email</label>
+                            <input class="form-control" type="email" name="Email"
+                                   ng-model="employee.EmailID"
+                                   placeholder="Email"
+                                   ng-minlength="3" required>
+
+                            <div ng-messages="employeeForm.Email.$error" style="color:red"
+                                 ng-if="employeeForm.Email.$touched">
+                                <div ng-message="required">Please Enter Email</div>
+                                <div ng-message="email">Please Enter Valid Email</div>
+                                <div ng-message="minlength">Please Enter Email</div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer bg-light">
+        <button type="button" class="btn btn-raised btn-primary" ng-if="employee.mode=='add'"
+                ng-disabled="!employeeForm.$valid" ng-click="addEmployee()">
+            <i class="fa fa-save"></i> Add Employee
+        </button>
+        <button type="button" class="btn btn-raised btn-warning" ng-if="employee.mode=='edit'"
+                ng-disabled="!employeeForm.$valid " ng-click="editEmployee()">
+            <i class="fa fa-edit"></i> Edit Employee
+        </button>
+        <button type="button" data-dismiss="modal" class="btn btn-raised btn-danger" ng-click="close()"><i
+                    class="fa fa-times"></i> Close
+        </button>
+    </div>
+</script>
+
+

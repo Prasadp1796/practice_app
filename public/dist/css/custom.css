@@ -1,0 +1,20 @@
+.modal-open .wrapper{
+    margin-top: -5%;
+    -webkit-filter: blur(12px) grayscale(10%);
+}
+.alertify-logs{
+    z-index: 1002%;
+}
+
+.st-sort-ascent:after{
+    content: '\25B2';
+}
+
+.st-sort-descent:after{
+    content: '\25BC';
+}
+
+.select-page {
+    width: 50px;
+    text-align: center;
+}

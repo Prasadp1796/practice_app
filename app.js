@@ -34,6 +34,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/practice_db", {
 
 app.use('/', indexRouter);
 app.use('/', usersRouter);
+app.use('/', require('./routes/manageEmployees'));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

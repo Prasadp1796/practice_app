@@ -1,0 +1,109 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <% include ../Partials/head.ejs %>
+</head>
+
+<body ng-app="manageEmployeesApp" ng-controller="manageEmployeesAppCtrlr" ng-init="getEmployees()">
+<div class="wrapper">
+    <% include ../Partials/header.ejs %>
+
+    <div class="page-wrap">
+        <% include ../Partials/sidebar.ejs %>
+
+        <div class="main-content">
+            <div class="container-fluid">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col text-right">
+                                <button type="button" class="btn btn-primary mt-4" ng-click="openModal('add')">
+                                    <i class="fa fa-plus"></i> Add Employee
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table st-table="displayedCollection" st-safe-src="employeesList" id="smart-table"
+                                   class="table table-hover table-center table-sm table-bordered table-striped text-center text-nowrap">
+                                <thead>
+                                <tr>
+                                    <th st-sort="FirstName" class="sortable asc">First Name</th>
+                                    <th st-sort="LastName" class="sortable asc">Last Name</th>
+                                    <th st-sort="Contact" class="sortable asc">Contact</th>
+                                    <th st-sort="Email" class="sortable asc">Email</th>
+                                    <th>Settings</th>
+                                </tr>
+                                <tr class="bg-light">
+                                    <td>
+                                        <input type="text" st-search="FirstName"
+                                               placeholder="Search"
+                                               class="input-sm form-control">
+                                    </td>
+                                    <td>
+                                        <input type="text" st-search="LastName"
+                                               placeholder="Search"
+                                               class="input-sm form-control">
+                                    </td>
+                                    <td>
+                                        <input type="text" st-search="Contact"
+                                               placeholder="Search"
+                                               class="input-sm form-control">
+                                    </td>
+                                    <td>
+                                        <input type="text" st-search="Email"
+                                               placeholder="Search"
+                                               class="input-sm form-control">
+                                    </td>
+
+                                    <td></td>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td class="text-center" colspan="13" ng-if="loading">
+                                        <div class="loader">Loading...</div>
+                                        <h6>Loading...</h6>
+                                    </td>
+                                </tr>
+                                <tr class="no-records-found" ng-if="employeesList.length == 0">
+                                    <td colspan="13">No matching records found</td>
+                                </tr>
+                                <tr st-select-row="row" st-select-mode="multiple"
+                                    ng-repeat="employee in displayedCollection |filter: searchData" ng-cloak>
+                                    <td>{{employee.FirstName}}</td>
+                                    <td>{{employee.LastName}}</td>
+                                    <td>{{employee.ContactNumber}}</td>
+                                    <td>{{employee.EmailID}}</td>
+                                    <td>
+                                        <button class="btn btn-xl" ng-click="openModal('edit', employee)"
+                                                style="border: 0.5px solid;border-radius: 30px;"><i
+                                                    class="fa fa-edit text-success" aria-hidden="true"></i></button>
+                                        <button class="btn btn-xl"
+                                                ng-click="deleteEmployee(employee.EmployeeID)"
+                                                style="border: 0.5px solid;border-radius: 30px"><i
+                                                    class="fa fa-trash text-danger" aria-hidden="true"></i></button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <% include ../Partials/footer.ejs %>
+
+    </div>
+</div>
+<% include ../Partials/bodyScriptLoader.ejs %>
+<script>
+    <% include ng-app.js %>
+</script>
+<% include modal.ejs %>
+</body>
+</html>
